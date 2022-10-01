@@ -7,8 +7,8 @@ const qa = (array) => {
     let less = array.slice(1).filter((e) => e <= pivot)
     let greater = array.slice(1).filter((e) => e > pivot)
     
-    return qa(greater).concat(pivot, qa(less));
-    //return qa(less).concat(pivot, qa(greater));
+    return qa(greater).concat(pivot, qa(less)); // this is for desc
+    //return qa(less).concat(pivot, qa(greater)); // this is for asc
 };
 
 console.log(qa([1, -1]))
