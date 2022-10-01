@@ -1,7 +1,7 @@
 'use strict';
 
 const maxItemInList = function(arr)  {
-    if (arr.length == 0) return -1;
+    if (arr.length == 0) return Number.MIN_VALUE;;
 
     return Math.max(arr[0] , maxItemInList(arr.slice(1)));
 };
