@@ -1,3 +1,5 @@
+// set up the data
+
 let statesNeeded = new Set(["mt", "wa", "or", "id", "nv", "ut", "ca", "az"]);
 
 const stations = {};
@@ -11,7 +13,7 @@ const finalStations = new Set();
 
 
 
-
+// iterate over every states where we want to launch
 
 while (statesNeeded.size) {
     let bestStation = null;
@@ -19,8 +21,10 @@ while (statesNeeded.size) {
     Object.keys(stations).forEach(station => {
 
         const states = stations[station];
+        // intersect between states the station is available in vs states where we want to broadcast
         const covered = new Set([...statesNeeded].filter(x => states.has(x)))
 
+        // if we have better coverage for this state, we consider this as best station and replace statesCovered
         if (covered.size > statesCovered.size) {
             bestStation = station;
             statesCovered = covered;
@@ -28,7 +32,9 @@ while (statesNeeded.size) {
 
     });
 
+    // if the coverage matches we remove those states from our original list of states we want to broadcast
     statesNeeded = new Set([...statesNeeded].filter(x => !statesCovered.has(x)));
+    // and add this as beststation
     finalStations.add(bestStation);
 }
 
